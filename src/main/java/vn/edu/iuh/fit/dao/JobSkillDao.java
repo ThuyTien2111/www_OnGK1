@@ -3,6 +3,7 @@ package vn.edu.iuh.fit.dao;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Query;
 import vn.edu.iuh.fit.db.Connect;
 import vn.edu.iuh.fit.entity.Job;
 import vn.edu.iuh.fit.entity.JobSkill;
@@ -33,5 +34,26 @@ public class JobSkillDao {
         }
 
         return false;
+    }
+    //Tính lương đề xuất
+    public Integer calcProposedSalary(Long job_id){
+        Integer rs= 0;
+        EntityTransaction tr= manager.getTransaction();
+        tr.begin();
+        try {
+            if(manager.find(Job.class, job_id)==null) rs=0;
+            else{
+            String sql="SELECT SUM(500*SkillLevel+300) AS Salary FROM job_skill\n" +
+                    "WHERE JobID=?";
+            Query query= manager.createNativeQuery(sql);
+            query.setParameter(1, job_id);
+            rs= Integer.parseInt(query.getSingleResult().toString());
+            tr.commit();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            tr.rollback();
+        }
+        return rs;
     }
 }

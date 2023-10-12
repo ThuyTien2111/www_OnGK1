@@ -19,5 +19,8 @@ public class JobSkillService {
         }
         return addJobSkill(job, jobSkills);
     }
+    public Integer calcProposedSalary(Long job_id){
+        return jobSkillDao.calcProposedSalary(job_id);
+    }
 
-}
+    }

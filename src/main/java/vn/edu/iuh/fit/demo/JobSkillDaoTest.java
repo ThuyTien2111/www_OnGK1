@@ -17,5 +17,6 @@ public class JobSkillDaoTest {
         jobSkills.add(new JobSkill(new Skill(7),"Financial analysis skills and reporting are a requirement",3 ));
 
 //        System.out.println(jobSkillDao.addJobSkill(new Job(30, "Quality Assurance Engineer", "Ensure the quality of software products.", new Company(3)),jobSkills ));
+        System.out.println(jobSkillDao.calcProposedSalary(30L));
     }
 }
