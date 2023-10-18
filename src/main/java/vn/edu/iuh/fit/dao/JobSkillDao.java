@@ -4,11 +4,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Query;
+import org.checkerframework.checker.units.qual.A;
 import vn.edu.iuh.fit.db.Connect;
 import vn.edu.iuh.fit.entity.Job;
 import vn.edu.iuh.fit.entity.JobSkill;
 import vn.edu.iuh.fit.entity.Skill;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class JobSkillDao {
@@ -56,4 +58,5 @@ public class JobSkillDao {
         }
         return rs;
     }
+
 }

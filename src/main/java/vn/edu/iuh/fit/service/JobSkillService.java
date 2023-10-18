@@ -17,7 +17,7 @@ public class JobSkillService {
             if((js.getSkill_level()!=0)&&(js.getSkill_level()!=1)&&(js.getSkill_level()!=2))
                 return false;
         }
-        return addJobSkill(job, jobSkills);
+        return jobSkillDao.addJobSkill(job, jobSkills);
     }
     public Integer calcProposedSalary(Long job_id){
         return jobSkillDao.calcProposedSalary(job_id);

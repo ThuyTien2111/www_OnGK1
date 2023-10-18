@@ -2,9 +2,11 @@ package vn.edu.iuh.fit.dao;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Query;
 import vn.edu.iuh.fit.db.Connect;
 import vn.edu.iuh.fit.entity.Skill;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SkillDao {
@@ -90,6 +92,25 @@ public class SkillDao {
             tr.rollback();
         }
         return null;
+    }
+    public List<Skill> getSkillsForJob(long jobID){
+        List<Skill> list= new ArrayList<>();
+        EntityTransaction tr= manager.getTransaction();
+        tr.begin();
+        try {
+            String sql="SELECT skill.SkillID, skill.Description, skill.SkillName, skill.Type FROM job \n" +
+                    "INNER JOIN job_skill ON job.JobID=job_skill.JobID\n" +
+                    "INNER JOIN skill ON skill.SkillID=job_skill.SkillID\n" +
+                    "WHERE job.JobID=?";
+            Query query= manager.createNativeQuery(sql, Skill.class);
+            query.setParameter(1, jobID);
+            list=query.getResultList();
+            tr.commit();
+        }catch (Exception e){
+            e.printStackTrace();
+            tr.rollback();
+        }
+        return list;
     }
 
 }

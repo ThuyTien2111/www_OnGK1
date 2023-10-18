@@ -64,7 +64,6 @@ public class SkillResource {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
     }
-
     @PUT
     @Path("/{id}/activate")
     public Response activateSkill(@PathParam("id") long id) {

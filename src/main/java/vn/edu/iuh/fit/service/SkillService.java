@@ -12,12 +12,12 @@ public class SkillService {
         skillDao=new SkillDao();
     }
     public boolean addSkill(Skill skill){
-        if((skill.getSkill_type()>=0)&&(skill.getSkill_type()<=2)) return  false;
-        return skillDao.add(skill);
+        if((skill.getSkill_type()>=0)&&(skill.getSkill_type()<=2)) return skillDao.add(skill);
+        return false;
     }
     public boolean updateSkill(Skill skill){
-        if((skill.getSkill_type()>=0)&&(skill.getSkill_type()<=2)) return  false;
-        return skillDao.update(skill);
+        if((skill.getSkill_type()>=0)&&(skill.getSkill_type()<=2)) return skillDao.update(skill);
+        return false;
     }
     public boolean deleteSkill(long id){
         return skillDao.delete(id);
@@ -30,6 +30,9 @@ public class SkillService {
     }
     public List<Skill> getAllSkill(){
         return skillDao.getAll();
+    }
+    public List<Skill> getSkillsForJob(long jobID){
+        return skillDao.getSkillsForJob(jobID);
     }
 
 }

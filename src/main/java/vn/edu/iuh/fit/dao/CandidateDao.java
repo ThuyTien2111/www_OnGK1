@@ -29,7 +29,7 @@ public class CandidateDao {
         }
         return false;
     }
-    //Thong ke so luong ứng viên theo năm sinh
+    //Thong ke so ứng viên theo năm sinh
     public Map<Integer, Long> getCandByYearBorn(){
         Map<Integer, Long> map= new HashMap<>();
         EntityTransaction tr= manager.getTransaction();
