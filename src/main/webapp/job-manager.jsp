@@ -79,6 +79,9 @@
 
     <a href="jobControl?action=addJob&compID=<%=compID%>" class="btn btn-primary">Đăng tin tuyển dụng</a>
     <a href="skill.jsp" class="btn btn-warning">Quản lý Skill</a>
+    <a href="exp-candidate.jsp" class="btn btn-info">Tìm ứng viên có kinh nghiệm ?</a>
+    <a href="no-exp-candidate.jsp" class="btn btn-danger">Bạn nhận đào tạo ứng viên ?</a>
+    <a href="market-survey.jsp" class="btn btn-success">Khảo sát thị trường</a>
 
 </div>
 

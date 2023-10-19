@@ -1,6 +1,7 @@
 <%@ page import="vn.edu.iuh.fit.service.CandidateSkillService" %>
 <%@ page import="java.util.List" %>
-<%@ page import="vn.edu.iuh.fit.entity.Job" %><%--
+<%@ page import="vn.edu.iuh.fit.entity.Job" %>
+<%@ page import="vn.edu.iuh.fit.service.JobSkillService" %><%--
   Created by IntelliJ IDEA.
   User: my
   Date: 18/10/2023
@@ -23,19 +24,23 @@
             <th>Tên công việc</th>
             <th>Mô tả công việc</th>
             <th>Tên công ty</th>
+            <th>Mức lương đề xuất</th>
         </tr>
         </thead>
         <tbody>
         <%
             long candID = Long.parseLong(request.getParameter("candID"));
             CandidateSkillService candidateSkillService = new CandidateSkillService();
+            JobSkillService jobSkillService=new JobSkillService();
             List<Job> jobForU = candidateSkillService.getJobForCandidateOrderBySkill(candID);
             for (Job j : jobForU) {
+                Integer price=jobSkillService.calcProposedSalary(j.getJob_id());
         %>
         <tr>
             <td><%=j.getJob_name()%></td>
             <td><%=j.getJob_desc()%></td>
             <td><%=j.getCompany().getComp_name()%></td>
+            <td><%=price.toString()%> $</td>
             <td>
                 <a href="" class="btn btn-success">Apply</a>
             </td>
